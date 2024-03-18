@@ -1,5 +1,6 @@
 package test.java.password;
 
+import main.java.password.PasswordStrength;
 import main.java.password.PasswordStrengthMeter;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,9 @@ public class PasswordStrengthMeterTest {
     @Test
     void meetsAllCriteria_Then_String(){
         PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        assertEquals("STRONG", meter.meter("ab12!@AB"));
+        PasswordStrength result = meter.meter("ab12!@AB");
+        assertEquals(PasswordStrength.STRONG, result);
+        PasswordStrength result2 = meter.meter("abc1!Add");
+        assertEquals(PasswordStrength.STRONG, result2);
     }
 }
