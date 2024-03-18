@@ -1,5 +1,5 @@
 package main.java.password;
 
 public enum PasswordStrength {
-    STRONG
+    NORMAL, STRONG
 }
