@@ -3,15 +3,7 @@ package main.java.password;
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s){
         if(s==null || s.isEmpty()) return PasswordStrength.INVALID;
-        int metCounts = 0;
-        boolean lengthEnough = s.length() >= 8;
-        if(lengthEnough) metCounts++;
-
-        boolean containsNum = meetsContainingNumberCriteria(s);
-        if(containsNum) metCounts++;
-
-        boolean containsUpp = meetsContainingUppercaseCriteria(s);
-        if(containsUpp) metCounts++;
+        int metCounts = getMetCriteria(s);
 
         if(metCounts <= 1) return PasswordStrength.WEAK;
         if(metCounts == 2) return PasswordStrength.NORMAL;
@@ -36,6 +28,15 @@ public class PasswordStrengthMeter {
             }
         }
         return false;
+    }
+
+    private int getMetCriteria(String s){
+        int metCounts = 0;
+        if(s.length() >= 8) metCounts++;
+        if(meetsContainingNumberCriteria(s)) metCounts++;
+        if(meetsContainingUppercaseCriteria(s)) metCounts++;
+
+        return metCounts;
     }
 
 }
