@@ -60,4 +60,9 @@ public class PasswordStrengthMeterTest {
     void meetsOnlyUpperCriteria_Then_Weak(){
         assertStrength("ABCDW", PasswordStrength.WEAK);
     }
+
+    @Test
+    void meetsNoCriteria_Then_Weak(){
+        assertStrength("abc", PasswordStrength.WEAK);
+    }
 }
